@@ -248,9 +248,14 @@ function getTopPapers(type){
             	var arraydata = $.parseJSON(data)
             	var output = "<ul style='padding: 0px; margin: 13px;'>"
             	for(var i in arraydata) {
+					var path = window.location.pathname.match(/\/project\/(.*)\/corpus\/(.*)\//);
+					var projectid = path[1]
+					var corpusid  = path[2]
+
             		var pub = arraydata[i]
-            		var gquery = "http://www.google.com/#q="+pub["title"].replace(" "+"+")
-            		var getpubAPI = window.location.origin+"/nodeinfo/"+pub["id"]
+            		var getpubAPI = window.location.origin+"/project/"+projectid+"/corpus/"+corpusid+"/document/"+pub["id"]
+            		
+					var gquery = "http://www.google.com/#q="+pub["title"].replace(" "+"+")
 
                     var ifjournal="",ifauthors="",ifkeywords="",ifdate="",iftitle="";
 
